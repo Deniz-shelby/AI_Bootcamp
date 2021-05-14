@@ -51,3 +51,11 @@ for i in range(df.shape[0]):
         if cont >= 4:
             print('HEART ATTACK')
         predictions.remove(predictions[0])'''
+
+
+heart_attack_acc = 0.85
+healthy_acc = 0.83
+
+acc = (1 - (heart_attack_acc + healthy_acc)/2)**4
+
+print(acc)
