@@ -1,35 +1,33 @@
-import cv2
-import numpy as np
-import matplotlib.pyplot as plt
 
-def imshow(img):
-    plt.figure(figsize = (10,7))
-    plt.imshow(img)
-    plt.show()
 
-img = cv2.imread('img/blue-red-flowers.png')
-rgb_img = cv2.cvtColor(img,cv2.COLOR_BGR2RGB)
-hsv_img = cv2.cvtColor(img,cv2.COLOR_BGR2HSV)
-imshow(rgb_img)
+# CAPTURE VIDEO
+video = cv2.VideoCapture(0)
 
-h, w = rgb_img.shape[:2]
+while(video.isOpened()):
+    check, frame = video.read()
+    if frame is not None:
+        # img = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+        img = frame
+        hsv_m = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
 
-lower_range = (90,20,0)
-upper_range = (140,255,255)
 
-mask = cv2.inRange(hsv_img, lower_range, upper_range)
-masked = rgb_img.copy()
-masked[mask==0] = [0,0,0]
+        lower_yellow = (20, 50, 6)
+        upper_yellow = (70, 255, 255)
+        
+        yellow_filter = cv2.inRange(hsv_m, lower_yellow, upper_yellow)
+        masked_mm = img.copy()
 
-img_and = cv2.bitwise_and(masked,rgb_img) #order dont change
-plt.imshow(img_and, cmap='gray')
+        masked_mm[yellow_filter == 0] = [0, 0, 0]
 
-background_image = cv2.imread('img/underwater.jpg')
-background_image = cv2.cvtColor(background_image, cv2.COLOR_BGR2RGB)
 
-crop_background = background_image[0:h, 0:w]
+        cv2.imshow('frame',masked_mm)
+        if cv2.waitKey(30) & 0xFF == ord('q'):
+            break
+    else:
+        break
 
-crop_background[mask != 0] = [0, 0, 0]
+#  rgba(170,177,38,255)
+video.release()
+cv2.destroyAllWindows()
+cv2.waitKey(1)
 
-final_image = crop_background + img_and
-imshow(final_image)
