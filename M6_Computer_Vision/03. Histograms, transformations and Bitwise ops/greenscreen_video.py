@@ -1,4 +1,6 @@
-
+import cv2
+import numpy as np
+import matplotlib.pyplot as plt
 
 # CAPTURE VIDEO
 video = cv2.VideoCapture(0)
@@ -11,13 +13,12 @@ while(video.isOpened()):
         hsv_m = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
 
 
-        lower_yellow = (20, 50, 6)
+        lower_yellow = (36, 25, 25)
         upper_yellow = (70, 255, 255)
-        
-        yellow_filter = cv2.inRange(hsv_m, lower_yellow, upper_yellow)
+        green_filter = cv2.inRange(hsv_m, lower_yellow, upper_yellow)
         masked_mm = img.copy()
 
-        masked_mm[yellow_filter == 0] = [0, 0, 0]
+        masked_mm[green_filter == 0] = [0, 0, 0]
 
 
         cv2.imshow('frame',masked_mm)
