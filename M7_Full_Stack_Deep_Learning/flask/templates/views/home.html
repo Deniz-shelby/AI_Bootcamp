@@ -1,6 +1,8 @@
 {% extends "/layouts/index.html"%} 
 
 {% from "/components/jumbotron/jumbotron.html" import JumbotronComponent %}
+{% from "/components/hero/hero.html" import HeroComponent %}
+
 {% from "/components/about/index.html" import AboutComponent %}
 {% from "/components/projects/index.html" import ProjectsListingComponent %}
 
@@ -11,6 +13,7 @@
 
 {% block content %}
 {{ JumbotronComponent(social_links)}}
+{{ HeroComponent}}
    <div class="container">
     {{AboutComponent()}}
     {{ProjectsListingComponent(my_projects)}}
