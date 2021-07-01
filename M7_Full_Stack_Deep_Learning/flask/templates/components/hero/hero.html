@@ -1,31 +1,47 @@
 
 {%macro HeroComponent(social_links) -%}
 
-<div class="container">
-    <div class="hero">
-        
-        <div class="row h-100">
-            <div class="col col-sm-12 col-md-7 d-flex flex-column justify-content-center">
-                <img class="avatar" src="{{url_for('static', filename='/assets/profile.png')}}" class="d-block mx-lg-auto img-fluid" alt="Bootstrap Themes" loading="lazy" >
-                <div class="social-links mt-4 d-flex align-items-center justify-content-start">
-                    {%for social_link in social_links%}
-                        <span>
-                            <a href="{{social_link['link']}}">{{social_link["icon"]|safe }}</a>
-                        </span>
-                    {%endfor%}
-                </div>
-            </div>
-            <div class="col col-sm-12 col-md-5 d-flex flex-column align-items-center justify-content-center">
-            <h1 class="display-5 fw-bold mb-3">AI Engineer, Mechanical Engineer, Fullstack Developer.</h1>
-            <p class="lead">I am an AI Engineer, who focuses on .... I build also beautiful web applications and API's with Flask.</p>
-            <div class="d-grid gap-2 d-md-flex justify-content-md-start">
-                <button type="button" class="btn btn-primary btn-lg px-4 me-md-2 mx-3">Primary</button>
-                <button type="button" class="btn btn-outline-secondary btn-lg px-4">Default</button>
-            </div>
-            </div>
-        </div>
-    
+<!-- -------- START HEADER 1 w/ text and image on right ------- -->
+<header>
+  <div class="page-header min-vh-100">
+    <div class="oblique position-absolute top-0 h-100 d-md-block d-none">
+      <div class="oblique-image bg-cover position-absolute fixed-top ms-auto h-100 z-index-0 ms-n6" style="background-image:url({{url_for('static', filename='/assets/profile_background.png')}})"></div>
     </div>
-</div>
+    <div class="container">
+      <div class="row">
+        <div class="container py-6 d-md-none">
+          <div class="row mt-5 text-center">
+            <div class="col-12 ">
+              <a href="javascript:;" class="avatar rounded-circle">
+                <img alt="Image placeholder" src="{{url_for('static', filename='/assets/profile.png')}}">
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6 col-md-7 d-flex justify-content-center flex-column">
+          <h1 class="text-gradient text-primary">Deniz Elci</h1>
+          <h1 class="mb-4">AI & Mechanical Engineer | Fullstack Developer</h1>
+          <p class="lead pe-5 me-5">The time is now for it be okay to be great. People in this world shun people for being nice. </p>
+          <div class="social-links mt-4 d-flex align-items-center justify-content-start">
+            {%for social_link in social_links%}
+                <span>
+                    <a href="{{social_link['link']}}">{{social_link["icon"]|safe }}</a>
+                </span>
+            {%endfor%}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+<!-- -------- END HEADER 1 w/ text and image on right ------- -->
+
+
+
+
+
+
+
+
 
 {%-endmacro%}

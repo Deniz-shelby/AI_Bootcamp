@@ -1,0 +1,30 @@
+
+{%macro HeroComponent(social_links) -%}
+
+<div class="container">
+    <div class="hero">
+        
+        <div class="row vh-100">
+            <div class="col col-sm-12 col-md-7 d-flex flex-column justify-content-center">
+                <img class="avatar" src="{{url_for('static', filename='/assets/profile.png')}}" class="d-block mx-lg-auto img-fluid" alt="Deniz Elci" loading="lazy" >
+                <div class="social-links mt-4 d-flex align-items-center justify-content-start">
+                    {%for social_link in social_links%}
+                        <span>
+                            <a href="{{social_link['link']}}">{{social_link["icon"]|safe }}</a>
+                        </span>
+                    {%endfor%}
+                </div>
+            </div>
+            <div class="col col-sm-12 col-md-5 d-flex flex-column align-items-center justify-content-center">
+            <h1 class="display-5 fw-bold mb-3">AI Engineer, Mechanical Engineer, Fullstack Developer.</h1>
+            <p class="lead">I am an AI Engineer, who focuses on .... I build also beautiful web applications and API's with Flask.</p>
+            <div class="d-flex justify-content-end">
+                <button type="button" class="btn btn-light btn-lg px-4 me-md-2 mx-3">Contact Me</button>
+            </div>
+            </div>
+        </div>
+    
+    </div>
+</div>
+
+{%-endmacro%}

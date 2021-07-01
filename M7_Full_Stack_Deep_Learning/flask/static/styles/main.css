@@ -1,8 +1,7 @@
 :root {
     --main-bg-color: #0e1117;
     --main-text-light: #fff;
-    --main-text-primary: #00f68f;
-    
+    --main-text-primary: #04fdf1;    
 }
 
 .btn-outline-success{
@@ -23,8 +22,15 @@
  
 }
 
+.hero {
+    margin-top: 100px;
+}
+
 .navbar{
-    padding-top:50px
+    padding-top:30px;
+    margin-bottom: 50px;
+    background: var(--main-bg-color);
+    justify-content: flex-end; 
 }
 body{
     background-color:var(--main-bg-color);
@@ -57,7 +63,7 @@ h1{
     padding-bottom:200px;
 }
 
-.home-jumbotron-container{
+.home-hero-container{
     padding-left:3em;
     padding-right: 3em;
 }

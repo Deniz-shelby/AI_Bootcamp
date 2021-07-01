@@ -1,6 +1,6 @@
 {% macro NavbarComponent(APP_LOGO,APP_NAME,MENU_ITEMS) %}
 
-<nav class="navbar navbar-expand-lg navbar-dark">
+<nav class="navbar navbar-expand-lg navbar-dark m-b-3">
  <div class="container">
   <a class="navbar-brand" href="/">
      {{APP_LOGO|safe}}
@@ -17,8 +17,8 @@
     <span class="navbar-toggler-icon"></span>
   </button>
 
-  <div class="collapse navbar-collapse " id="navbarSupportedContent">
-    <ul class="navbar-nav ml-auto">
+  <div class="collapse navbar-collapse text-right" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-0">
       {% for item in MENU_ITEMS %}
       <li class="nav-item ">
         <a class="nav-link" href="{{item['link']}}">{{item["label"]}}</a>
