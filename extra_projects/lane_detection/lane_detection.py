@@ -1,17 +1,16 @@
+# from _typeshed import NoneType
 import cv2
 import numpy as np 
 import lane_edge as edge 
 import matplotlib.pyplot as plt 
 
-filename = 'orig_lane_detection_1.mp4'
-file_size = (1920,1080) # Assumes 1920x1080 mp4
-scale_ratio = 1 # Option to scale to fraction of original size. 
+filename = '/Datasets/Driving_1.mp4'
+file_size = (640,360) # input 640x360 mp4
+scale_ratio = 1  
 
-# We want to save the output to a video file
 output_filename = 'orig_lane_detection_1_lanes.mp4'
 output_frames_per_second = 20.0 
 
-# Global variables
 prev_leftx = None
 prev_lefty = None
 prev_rightx = None
@@ -27,26 +26,13 @@ prev_left_fit2 = []
 prev_right_fit2 = []
 
 class Lane:
-  """
-  Represents a lane on a road.
-  """
+ 
   def __init__(self, orig_frame):
-    """
-	  Default constructor
-		
-    :param orig_frame: Original camera image (i.e. frame)
-    """
-    self.orig_frame = orig_frame
-
-    # This will hold an image with the lane lines		
+    self.orig_frame = orig_frame	
     self.lane_line_markings = None
-
-    # This will hold the image after perspective transformation
     self.warped_frame = None
     self.transformation_matrix = None
-    self.inv_transformation_matrix = None
-
-    # (Width, Height) of the original video frame (or image)
+    self.inv_transformation_matrix = NoneType
     self.orig_image_size = self.orig_frame.shape[::-1][1:]
 
     width = self.orig_image_size[0]
@@ -54,8 +40,6 @@ class Lane:
     self.width = width
     self.height = height
 	
-    # Four corners of the trapezoid-shaped region of interest
-    # You need to find these corners manually.
     self.roi_points = np.float32([
       (int(0.456*width),int(0.544*height)), # Top-left corner
       (0, height-1), # Bottom-left corner			
