@@ -1,0 +1,105 @@
+{
+    "intents": [
+        {
+        "tag": "greeting",
+        "patterns": [
+          "Hi",
+          "Hey",
+          "How are you",
+          "Is anyone there?",
+          "Hello",
+          "Good day",
+          "Good evening",
+          "Good night",
+          "I need help",
+          "please help me"
+        ],
+        "responses": [
+          "Hello, thanks for visiting. How do you feel?"
+
+        ]
+        },
+        {
+        "tag": "goodbye",
+        "patterns": ["Bye", "See you later", "Goodbye"],
+        "responses": [
+          "See you later, thanks for visiting",
+          "Have a nice day",
+          "Bye! Come back again soon."
+        ]
+        },
+        {
+        "tag": "thanks",
+        "patterns": ["Thanks", "Thank you", "That's helpful", "Thank's a lot!"],
+        "responses": ["Happy to help!", "Any time!", "My pleasure"]
+        },
+        {
+        "tag": "feeling",
+        "patterns": [
+            "I don't feel good",
+            "I'm not doing well",
+            "I'm not feeling well today",
+            "I feel sick",
+            "I feel bad",
+            "I feel not well"
+              
+        ],
+        "responses": [
+            "Do you have any symptoms?",
+            "What are you experiencing?",
+            "What are you suffering from?"
+        ]
+        },
+        { 
+        "tag": "symptoms",
+        "patterns": [
+            "I have a flu",
+            "I have a cold",
+            "I have a fever",
+            "I have a runny nose",
+            "I have a sore throat",
+            "I have cough and nausia"
+        ],
+        "responses": [
+            "Did you have contact with a corona positive?",
+            "Did you have contact to a corona positive person?"
+        ]
+        },
+        {
+        "tag": "contact",
+        "patterns": [
+          "Yes i had",
+          "Yes",
+          "Yes yesterday",
+          "Yesterday",
+          "Yesterday i had",
+          "a day ago",
+          "2 days ago",
+          "couple of days ago",
+          "3 days ago",
+          "4 days ago",
+          "5 days ago",
+          "6 days ago",
+          "7 days ago",
+          "8 days ago",
+          "9 days ago",
+          "10 days ago"
+          
+        ],
+        "responses": [
+          "Please contact us for a corona test and stay otherwise in quarantine."
+        ]
+        },
+        {
+        "tag": "no_contact",
+        "patterns": [
+          "No"
+          
+        ],
+        "responses": [
+          "Please stay 14 days in quarantine."
+        ]
+        }
+    ]
+}
+  
