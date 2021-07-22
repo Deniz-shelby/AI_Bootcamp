@@ -21,13 +21,12 @@ STEP 1 - TRAIN DATA
 # Prepare training data
 
 words = [
-  "Abarth",
   "Alfa Romeo",
   "Aston Martin",
   "Audi",
-  "Bentley",
   "BMW",
   "Bugatti",
+  "Bentley",
   "Cadillac",
   "Chevrolet",
   "Chrysler",
@@ -36,8 +35,6 @@ words = [
   "Daewoo",
   "Daihatsu",
   "Dodge",
-  "Donkervoort",
-  "DS",
   "Ferrari",
   "Fiat",
   "Fisker",
@@ -63,17 +60,14 @@ words = [
   "Mazda",
   "McLaren",
   "Mercedes-Benz",
-  "MG",
   "Mini",
   "Mitsubishi",
-  "Morgan",
   "Nissan",
   "Opel",
   "Peugeot",
   "Porsche",
   "Renault",
   "Rolls-Royce",
-  "Rover",
   "Saab",
   "Seat",
   "Skoda",
@@ -86,6 +80,8 @@ words = [
   "Volkswagen",
   "Volvo"
 ]
+
+words = set(words)
 
 train_data = []
 
@@ -106,7 +102,7 @@ with open("cars.txt") as file:
                 print("----------------")
                 print("start index:", start_index)
                 print("end index:", end_index)
-                pos = (start_index, end_index, "CAR_BRAND")
+                pos = (start_index, end_index, "BRAND")
                 entities.append(pos)
         element = (sentence.rstrip('\n'), {"entities": entities})
 
@@ -128,27 +124,27 @@ for _, annotations in train_data:
 
 # Train model
 
-pipe_exceptions = ["ner", "trf_wordpiecer", "trf_tok2vec"]
-unaffected_pipes = [pipe for pipe in nlp.pipe_names if pipe not in pipe_exceptions]
+pipe_exceptions = ["ner", "trf_wordpiecer", "trf_tok2vec"] # Exceptions
+unaffected_pipes = [pipe for pipe in nlp.pipe_names if pipe not in pipe_exceptions] # Unaffected pipes
 
-with nlp.disable_pipes(*unaffected_pipes):
-    for iteration in range(30):
-        print("Iteration #", iteration)
+with nlp.disable_pipes(*unaffected_pipes): # only train NER and stop other pipes
+    for iteration in range(30): # iterations
+        print("Iteration #", iteration) 
 
         random.shuffle(train_data)
         losses = {}
 
-        batches = minibatch(train_data, size=compounding(4.0, 32.0, 1.001))
+        batches = minibatch(train_data, size=compounding(4.0, 32.0, 1.001)) # mini-batches compounding function 
         for batch in batches:
             for text, annotations in batch:
                 doc = nlp.make_doc(text)
                 example = Example.from_dict(doc, annotations)
-                nlp.update([example], losses=losses, drop=0.1)
+                nlp.update([example], losses=losses, drop=0.2)
         print("Losses:", losses)
 
 # Save model to output directory
 
-output_dir = Path("/models/")
+output_dir = Path("./ner_models/")
 if not output_dir.exists():
     output_dir.mkdir()
 nlp.to_disk(output_dir)
