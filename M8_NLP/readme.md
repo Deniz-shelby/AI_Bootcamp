@@ -31,4 +31,3 @@ Content for 2 weeks of class (10 days).
 |  9  | Self-Attention, Transformers, Bert, Masked LM | MLM from scratch                      | MLM from scratch                   |
 | 10  | Team Challenge                                |                                       |                                    |
 
-Note: Day 9 (Transformers) will not be taght for AIFall20 due to easter week.
